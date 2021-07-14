@@ -77,12 +77,12 @@ flutter:
   fonts:
     - family: Kanit
       fonts:
-        - asset: assets/fonts/Kanit-Regular.ttf
-        - asset: assets/fonts/Kanit-ExtraLight.ttf
+        - asset: fonts/Kanit-Regular.ttf
+        - asset: fonts/Kanit-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/Kanit-Medium.ttf
+        - asset: fonts/Kanit-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Kanit-SemiBold.ttf
+        - asset: fonts/Kanit-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Kanit-Bold.ttf
+        - asset: fonts/Kanit-Bold.ttf
           weight: 700

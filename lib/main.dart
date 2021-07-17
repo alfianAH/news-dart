@@ -50,6 +50,12 @@ class MyApp extends StatelessWidget {
           ),
 
           subtitle2: TextStyle(
+            color: NewsColors.fontDark,
+            fontSize: 15,
+            fontWeight: NewsFonts.extraLight,
+          ),
+
+          caption: TextStyle(
             color: NewsColors.linkDark,
             fontSize: 20,
             fontWeight: NewsFonts.light,

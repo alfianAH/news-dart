@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/ui/values/fonts/news_font.dart';
+import 'package:news_app/ui/news_item.dart';
 import 'package:news_app/ui/values/menu/news_category_menu.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,13 +33,17 @@ class HomeScreen extends StatelessWidget{
                       bottom: 10,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         // Menu Icon
                         Icon(newsCategoryMenu.categoryIcon),
 
+                        SizedBox(width: 8),
+
                         // Menu name
-                        Text(newsCategoryMenu.categoryName),
+                        Text(
+                          newsCategoryMenu.categoryName,
+                          style: textTheme.headline3,
+                        ),
                       ],
                     ),
                   )
@@ -51,43 +55,29 @@ class HomeScreen extends StatelessWidget{
         ),
       ),
 
-      body: Column(
-        children: [
-          Text(
-            'Headline 1',
-            style: textTheme.headline1,
-          ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title
+              Text(
+                'Berita Utama',
+                style: textTheme.headline2,
+              ),
 
-          Text(
-            'Headline 2',
-            style: textTheme.headline2
+              // News list
+              ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index){
+                  return NewsItem();
+                },
+                itemCount: 5,
+              ),
+            ],
           ),
-
-          Text(
-            'Headline 3',
-            style: textTheme.headline3
-          ),
-
-          Text(
-            'Body text 1',
-            style: textTheme.bodyText1
-          ),
-
-          Text(
-            'Body text 2',
-            style: textTheme.bodyText2
-          ),
-
-          Text(
-            'Subtitle 1',
-            style: textTheme.subtitle1
-          ),
-
-          Text(
-            'Subtitle 2',
-            style: textTheme.subtitle2
-          ),
-        ],
+        )
       ),
     );
   }

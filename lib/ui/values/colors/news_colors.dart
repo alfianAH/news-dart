@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewsColors{
-  static const appBar     = Color.fromRGBO( 45,  52,  91, 1);
+  static const primaryColor = Color.fromRGBO(45, 52, 91, 1);
 
   static const bodyDark   = Color.fromRGBO( 28,  26,  40, 1);
   static const bodyLight  = Color.fromRGBO(233, 233, 233, 1);

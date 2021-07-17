@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/fonts/news_font.dart';
 import 'package:news_app/ui/values/menu/news_category_menu.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Berita',
-          style: TextStyle(
-            fontWeight: NewsFonts.semiBold
-          ),
+          style: textTheme.headline1
         ),
       ),
 
@@ -52,7 +51,44 @@ class HomeScreen extends StatelessWidget{
         ),
       ),
 
-      body: Text('News app'),
+      body: Column(
+        children: [
+          Text(
+            'Headline 1',
+            style: textTheme.headline1,
+          ),
+
+          Text(
+            'Headline 2',
+            style: textTheme.headline2
+          ),
+
+          Text(
+            'Headline 3',
+            style: textTheme.headline3
+          ),
+
+          Text(
+            'Body text 1',
+            style: textTheme.bodyText1
+          ),
+
+          Text(
+            'Body text 2',
+            style: textTheme.bodyText2
+          ),
+
+          Text(
+            'Subtitle 1',
+            style: textTheme.subtitle1
+          ),
+
+          Text(
+            'Subtitle 2',
+            style: textTheme.subtitle2
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/ui/menu_item.dart';
 import 'package:news_app/ui/news_item.dart';
+import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/menu/news_category_menu.dart';
 
 class HomeScreen extends StatelessWidget{
@@ -22,38 +24,31 @@ class HomeScreen extends StatelessWidget{
             final NewsCategoryMenu newsCategoryMenu = newsCategoryMenuList[index];
 
             return Container(
-              padding: EdgeInsets.only(right: 16, top: 16, bottom: 16),
-              child: InkWell(
-                onTap: (){},
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10),
-                      bottomRight: Radius.circular(10)
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Drawer Header
+                  Container(
+                    height: 60,
+                    child: DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: NewsColors.primaryColor
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 16
+                      ),
+                      margin: const EdgeInsets.all(0),
+                      child: Text(
+                        'Menu',
+                        style: textTheme.headline1,
+                      ),
                     )
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      top: 10,
-                      bottom: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        // Menu Icon
-                        Icon(newsCategoryMenu.categoryIcon),
 
-                        SizedBox(width: 8),
-
-                        // Menu name
-                        Text(
-                          newsCategoryMenu.categoryName,
-                          style: textTheme.headline3,
-                        ),
-                      ],
-                    ),
-                  )
-                ),
+                  // Menu items
+                  MenuItem(newsCategoryMenu: newsCategoryMenu),
+                ],
               ),
             );
           },

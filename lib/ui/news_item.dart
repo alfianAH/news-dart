@@ -17,9 +17,11 @@ class _NewsItemState extends State<NewsItem> {
         padding: const EdgeInsets.only(top: 8),
         child: InkWell(
           onTap: (){  },
-          borderRadius: BorderRadius.circular(10),
           child: Card(
             color: NewsColors.card,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Row(
               children: [
                 // News image

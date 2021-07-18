@@ -22,10 +22,16 @@ class HomeScreen extends StatelessWidget{
             final NewsCategoryMenu newsCategoryMenu = newsCategoryMenuList[index];
 
             return Container(
+              padding: EdgeInsets.only(right: 16, top: 16, bottom: 16),
               child: InkWell(
                 onTap: (){},
-
                 child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10)
+                    )
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 16,

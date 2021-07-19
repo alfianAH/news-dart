@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/appbar/mobile_appbar.dart';
+import 'package:news_app/ui/category_detail_screen.dart';
 import 'package:news_app/ui/values/categories/news_category.dart';
 
 class CategoryScreen extends StatelessWidget{
@@ -33,11 +34,17 @@ class CategoryScreen extends StatelessWidget{
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 3.5,
+                childAspectRatio: 3,
 
                 children: newsCategoryList.map((newsCategory){
                   return InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return CategoryDetailScreen(
+                          categoryTitle: newsCategory.categoryName
+                        );
+                      }));
+                    },
 
                     child: Card(
                       shape: RoundedRectangleBorder(

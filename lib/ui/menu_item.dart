@@ -13,7 +13,11 @@ class MenuItem extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(right: 16, top: 16, bottom: 16),
       child: InkWell(
-        onTap: (){},
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return newsCategoryMenu.categoryDestination;
+          }));
+        },
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(

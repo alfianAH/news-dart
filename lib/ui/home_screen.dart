@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget{
                 children: [
                   // Drawer Header
                   Container(
-                    height: 60,
+                    height: AppBar().preferredSize.height,
                     child: DrawerHeader(
                       decoration: BoxDecoration(
                         color: NewsColors.primaryColor

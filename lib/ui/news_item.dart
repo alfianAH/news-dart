@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/ui/detail_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 
 class NewsItem extends StatefulWidget{
@@ -15,7 +16,11 @@ class _NewsItemState extends State<NewsItem> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: InkWell(
-          onTap: (){  },
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return DetailScreen();
+            }));
+          },
           child: Card(
             color: NewsColors.card,
             shape: RoundedRectangleBorder(
@@ -34,7 +39,7 @@ class _NewsItemState extends State<NewsItem> {
                     ),
                     child: Container(
                       width: 150,
-                      height: 150,
+                      height: 135,
                       child: Image.network(
                         'https://asset.kompas.com/crops/xAqIt1VurCw-ncN41E0vag75IbQ=/0x0:1000x667/780x390/filters:watermark(data/photo/2020/03/10/5e6775d554370.png,0,-0,1)/data/photo/2020/11/06/5fa565d9943e3.jpg',
                         fit: BoxFit.fitHeight,

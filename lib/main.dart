@@ -36,11 +36,13 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(
             color: NewsColors.fontLight,
             fontSize: 20,
+            fontWeight: NewsFonts.regular,
           ),
 
           bodyText2: TextStyle(
             color: NewsColors.fontDark,
             fontSize: 15,
+            fontWeight: NewsFonts.regular,
           ),
 
           subtitle1: TextStyle(

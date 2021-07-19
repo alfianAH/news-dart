@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 
@@ -23,6 +22,7 @@ class _NewsItemState extends State<NewsItem> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // News image
                 Expanded(
@@ -32,9 +32,13 @@ class _NewsItemState extends State<NewsItem> {
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)
                     ),
-                    child: Image.network(
-                      'https://asset.kompas.com/crops/xAqIt1VurCw-ncN41E0vag75IbQ=/0x0:1000x667/780x390/filters:watermark(data/photo/2020/03/10/5e6775d554370.png,0,-0,1)/data/photo/2020/11/06/5fa565d9943e3.jpg',
-                      fit: BoxFit.fill,
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      child: Image.network(
+                        'https://asset.kompas.com/crops/xAqIt1VurCw-ncN41E0vag75IbQ=/0x0:1000x667/780x390/filters:watermark(data/photo/2020/03/10/5e6775d554370.png,0,-0,1)/data/photo/2020/11/06/5fa565d9943e3.jpg',
+                        fit: BoxFit.fitHeight,
+                      ),
                     )
                   )
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/ui/appbar/mobile_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatelessWidget{
@@ -8,21 +9,9 @@ class DetailScreen extends StatelessWidget{
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Berita',
-          style: textTheme.headline1,
-        ),
-
-        // Back button
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_rounded
-          ),
-        ),
+      appBar: MobileAppBar(
+        appBar: AppBar(),
+        appBarTitle: 'Berita',
       ),
 
       body: SingleChildScrollView(

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:news_app/model/news_response.dart';
+import 'package:news_app/model/news_model.dart';
 import 'package:chopper/chopper.dart';
 
 class ModelConverter implements Converter{
@@ -41,9 +41,9 @@ class ModelConverter implements Converter{
 
     try{
       var mapData = json.decode(body);
-      var newsResponse = NewsResponse.fromJson(mapData);
+      var newsModel = NewsModel.fromJson(mapData);
 
-      return response.copyWith<BodyType>(body: newsResponse as BodyType);
+      return response.copyWith<BodyType>(body: newsModel as BodyType);
     } catch(e){
       chopperLogger.warning(e);
       return response.copyWith<BodyType>(body: body);

@@ -41,7 +41,8 @@ class CategoryScreen extends StatelessWidget{
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context){
                         return CategoryDetailScreen(
-                          categoryTitle: newsCategory.categoryName
+                          categoryTitle: newsCategory.categoryName,
+                          categoryId: newsCategory.categoryId,
                         );
                       }));
                     },

@@ -1,15 +1,21 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/model/news_model.dart';
+import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/appbar/mobile_appbar.dart';
-import 'package:news_app/ui/menu_item.dart';
-import 'package:news_app/ui/news_item.dart';
-import 'package:news_app/ui/values/colors/news_colors.dart';
-import 'package:news_app/ui/values/menu/news_category_menu.dart';
+import 'package:news_app/ui/news_list.dart';
+import 'package:news_app/ui/values/constants/constants.dart';
+import 'package:provider/provider.dart';
 
 class CategoryDetailScreen extends StatelessWidget{
 
   final String categoryTitle;
+  final String categoryId;
 
-  CategoryDetailScreen({required this.categoryTitle});
+  CategoryDetailScreen({
+    required this.categoryTitle,
+    required this.categoryId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +27,30 @@ class CategoryDetailScreen extends StatelessWidget{
         appBarTitle: categoryTitle,
       ),
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Title
-              Text(
-                'Berita Utama',
-                style: textTheme.headline2,
-              ),
+      body: FutureBuilder<Response<NewsModel>>(
+        future: Provider.of<NewsService>(context).getNewsByCategory(categoryId, apiKey),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.done){
+            if(snapshot.hasError){
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  style: textTheme.bodyText1,
+                ),
+              );
+            }
 
-              // News list
-              ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index){
-                  return NewsItem();
-                },
-                itemCount: 5,
-              ),
-            ],
-          ),
-        )
+            final newsResponse = snapshot.data!.body;
+
+            return NewsList(newsModel: newsResponse);
+
+          } else{
+            // Show loading
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }

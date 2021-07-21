@@ -7,9 +7,6 @@ part 'news_service.chopper.dart';
 @ChopperApi()
 abstract class NewsService extends ChopperService{
 
-  @Get(path: 'top-headlines?country=id&apiKey={apiKey}')
-  Future<Response<NewsModel>> getNews(@Path() String apiKey);
-
   static NewsService create(){
     final client = ChopperClient(
       baseUrl: 'https://newsapi.org/v2/',
@@ -23,4 +20,13 @@ abstract class NewsService extends ChopperService{
 
     return _$NewsService(client);
   }
+
+  @Get(path: 'top-headlines?country=id&apiKey={apiKey}')
+  Future<Response<NewsModel>> getNews(@Path() String apiKey);
+
+  @Get(path: 'top-headlines?country=id&category={category}&apiKey={apiKey}')
+  Future<Response<NewsModel>> getNewsByCategory(
+      @Path() String category,
+      @Path() String apiKey);
+
 }

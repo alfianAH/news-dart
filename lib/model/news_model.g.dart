@@ -11,8 +11,8 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
     status: json['status'] as String,
     totalResults: json['totalResults'] as int,
     articles: (json['articles'] as List)
-        ?.map((e) => e == null ? null : Articles.fromJson(e))
-        ?.toList(),
+        .map((e) => e == null ? null : Articles.fromJson(e))
+        .toList(),
   );
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logging/logging.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/home_screen.dart';
@@ -6,8 +7,9 @@ import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/fonts/news_font.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
   _setupLogging();
+  await dotenv.load();
   runApp(MyApp());
 }
 

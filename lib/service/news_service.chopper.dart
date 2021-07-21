@@ -17,9 +17,9 @@ class _$NewsService extends NewsService {
   final definitionType = NewsService;
 
   @override
-  Future<Response<NewsResponse>> getNews() {
-    final $url = 'top-headlines';
+  Future<Response<NewsModel>> getNews(String apiKey) {
+    final $url = 'top-headlines?country=id&apiKey=$apiKey';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<NewsResponse, NewsResponse>($request);
+    return client.send<NewsModel, NewsModel>($request);
   }
 }

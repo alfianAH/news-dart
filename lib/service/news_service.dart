@@ -1,5 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:news_app/model/news_response.dart';
+import 'package:news_app/service/header_interceptor.dart';
+import 'package:news_app/utils/model_converter.dart';
 
 part 'news_service.chopper.dart';
 
@@ -15,7 +17,9 @@ abstract class NewsService extends ChopperService{
       services: [
         _$NewsService(),
       ],
-      interceptors: [HttpLoggingInterceptor()],
+      interceptors: [HeaderInterceptor(), HttpLoggingInterceptor()],
+      converter: ModelConverter(),
+      errorConverter: JsonConverter(),
     );
 
     return _$NewsService(client);

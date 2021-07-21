@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:news_app/ui/home_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/fonts/news_font.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  _setupLogging();
+  runApp(MyApp());
+}
+
+void _setupLogging(){
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
+}
 
 class MyApp extends StatelessWidget {
   @override

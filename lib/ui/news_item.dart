@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/model/news_model.dart';
 import 'package:news_app/ui/detail_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 
-class NewsItem extends StatefulWidget{
-  @override
-  _NewsItemState createState() => _NewsItemState();
-}
+class NewsItem extends StatelessWidget {
 
-class _NewsItemState extends State<NewsItem> {
+  final Articles newsArticle;
+
+  NewsItem({required this.newsArticle});
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -39,10 +40,16 @@ class _NewsItemState extends State<NewsItem> {
                     ),
                     child: Container(
                       width: 150,
-                      height: 135,
+                      height: 150,
                       child: Image.network(
-                        'https://asset.kompas.com/crops/xAqIt1VurCw-ncN41E0vag75IbQ=/0x0:1000x667/780x390/filters:watermark(data/photo/2020/03/10/5e6775d554370.png,0,-0,1)/data/photo/2020/11/06/5fa565d9943e3.jpg',
+                        newsArticle.urlToImage.toString(),
                         fit: BoxFit.fitHeight,
+                        errorBuilder: (context, exception, stackTrace){
+                          return Icon(
+                            Icons.broken_image,
+                            size: 75,
+                          );
+                        },
                       ),
                     )
                   )
@@ -60,7 +67,7 @@ class _NewsItemState extends State<NewsItem> {
                       children: [
                         // News title
                         Text(
-                          'Lorem ipsum dolor sit amet',
+                          newsArticle.title.toString(),
                           style: textTheme.headline3,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -68,7 +75,7 @@ class _NewsItemState extends State<NewsItem> {
 
                         // News date
                         Text(
-                          'News date',
+                          newsArticle.publishedAt.toString(),
                           style: textTheme.subtitle2,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -76,7 +83,7 @@ class _NewsItemState extends State<NewsItem> {
 
                         // News content
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+                          newsArticle.content.toString(),
                           style: textTheme.bodyText2,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,

@@ -19,7 +19,7 @@ class NewsItem extends StatelessWidget {
         child: InkWell(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return DetailScreen();
+              return DetailScreen(newsArticle: newsArticle,);
             }));
           },
           child: Card(

@@ -76,6 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: InputDecoration(
                               hintText: 'Type your search...',
                             ),
+                            onChanged: (value){
+                              _searchText = value;
+                            },
                             onFieldSubmitted: (value){
                               _searchText = value;
                               Navigator.push(context, MaterialPageRoute(builder: (context){

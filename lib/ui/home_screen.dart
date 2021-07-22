@@ -154,10 +154,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
             final newsResponse = snapshot.data!.body;
 
-            return NewsList(
-              newsModel: newsResponse,
-              listTitle: 'Berita Utama',
-            );
+            // If the results greater than 0, return news list
+            if(newsResponse.totalResults! > 0) {
+              return NewsList(
+                newsModel: newsResponse,
+                listTitle: 'Berita Utama',
+              );
+            } else{ // Else, return text
+              return Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  'Tidak ada hasil',
+                  style: textTheme.bodyText1,
+                ),
+              );
+            }
           } else{
             // Show loading
             return Center(

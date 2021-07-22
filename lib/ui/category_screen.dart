@@ -3,7 +3,14 @@ import 'package:news_app/ui/appbar/mobile_appbar.dart';
 import 'package:news_app/ui/category_detail_screen.dart';
 import 'package:news_app/ui/values/categories/news_category.dart';
 
-class CategoryScreen extends StatelessWidget{
+class CategoryScreen extends StatefulWidget{
+  @override
+  _CategoryScreenState createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -15,6 +22,7 @@ class CategoryScreen extends StatelessWidget{
       ),
 
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -30,6 +38,7 @@ class CategoryScreen extends StatelessWidget{
 
               // Categories
               GridView.count(
+                controller: _scrollController,
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
@@ -76,5 +85,11 @@ class CategoryScreen extends StatelessWidget{
         ),
       )
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

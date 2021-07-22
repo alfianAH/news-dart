@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/menu_item.dart';
-import 'package:news_app/ui/news_item.dart';
 import 'package:news_app/ui/news_list.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/constants/constants.dart';
@@ -150,7 +149,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
             final newsResponse = snapshot.data!.body;
 
-            return NewsList(newsModel: newsResponse);
+            return NewsList(
+              newsModel: newsResponse,
+              listTitle: 'Berita Utama',
+            );
           } else{
             // Show loading
             return Center(

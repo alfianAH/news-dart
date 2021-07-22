@@ -42,7 +42,10 @@ class CategoryDetailScreen extends StatelessWidget{
 
             final newsResponse = snapshot.data!.body;
 
-            return NewsList(newsModel: newsResponse);
+            return NewsList(
+              newsModel: newsResponse,
+              listTitle: 'Berita Utama',
+            );
 
           } else{
             // Show loading

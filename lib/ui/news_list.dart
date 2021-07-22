@@ -6,9 +6,11 @@ import 'package:news_app/ui/news_item.dart';
 class NewsList extends StatelessWidget{
 
   final NewsModel newsModel;
+  final String listTitle;
 
   NewsList({
     required this.newsModel,
+    required this.listTitle
   });
 
   @override
@@ -23,8 +25,10 @@ class NewsList extends StatelessWidget{
             children: [
               // Title
               Text(
-                'Berita Utama',
+                listTitle,
                 style: textTheme.headline2,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
 
               // News list

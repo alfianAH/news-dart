@@ -10,17 +10,90 @@ import 'package:news_app/ui/values/constants/constants.dart';
 import 'package:news_app/ui/values/menu/news_category_menu.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget{
+class HomeScreen extends StatefulWidget{
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String _searchText = '';
+  final _searchTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Berita',
-          style: textTheme.headline1
-        ),
+        title: Padding(
+          padding: const EdgeInsets.only(
+            right: 16,
+            top: 16,
+            bottom: 16
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text(
+                    'Berita',
+                    style: textTheme.headline1
+                ),
+              ),
+
+              // Search bar
+              Expanded(
+                flex: 2,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: TextFormField(
+                            controller: _searchTextController,
+                            style: TextStyle(
+                              color: NewsColors.fontDark,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Type your search...',
+                            ),
+                          ),
+                        ),
+
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                            onPressed: (){
+                              showDialog(context: context, builder: (context){
+                                return AlertDialog(
+                                  content: Text('You search $_searchText'),
+                                );
+                              });
+                            },
+                            icon: Icon(
+                              Icons.search_rounded,
+                              color: Color.fromRGBO(144, 144, 144, 1),
+                            )
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ]
+          ),
+        )
       ),
 
       // Menu Drawer
@@ -87,5 +160,11 @@ class HomeScreen extends StatelessWidget{
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchTextController.dispose();
   }
 }

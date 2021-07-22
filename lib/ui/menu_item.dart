@@ -20,6 +20,7 @@ class MenuItem extends StatelessWidget{
         },
         child: Card(
           shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.black),
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(10),
               bottomRight: Radius.circular(10)

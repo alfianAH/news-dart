@@ -25,6 +25,7 @@ class NewsItem extends StatelessWidget {
           child: Card(
             color: NewsColors.card,
             shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.black),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(

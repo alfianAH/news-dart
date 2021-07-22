@@ -4,6 +4,7 @@ import 'package:news_app/model/news_model.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/menu_item.dart';
 import 'package:news_app/ui/news_list.dart';
+import 'package:news_app/ui/search_result_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/ui/values/constants/constants.dart';
 import 'package:news_app/ui/values/menu/news_category_menu.dart';
@@ -66,6 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: InputDecoration(
                               hintText: 'Type your search...',
                             ),
+                            onFieldSubmitted: (value){
+                              _searchText = value;
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return SearchResultScreen(searchText: _searchText);
+                              }));
+                            },
                           ),
                         ),
 
@@ -73,11 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           flex: 1,
                           child: IconButton(
                             onPressed: (){
-                              showDialog(context: context, builder: (context){
-                                return AlertDialog(
-                                  content: Text('You search $_searchText'),
-                                );
-                              });
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return SearchResultScreen(searchText: _searchText);
+                              }));
                             },
                             icon: Icon(
                               Icons.search_rounded,

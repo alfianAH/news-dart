@@ -30,4 +30,12 @@ class _$NewsService extends NewsService {
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<NewsModel, NewsModel>($request);
   }
+
+  @override
+  Future<Response<NewsModel>> getNewsBySearch(
+      String searchText, String apiKey) {
+    final $url = 'top-headlines?country=id&q=$searchText&apiKey=$apiKey';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<NewsModel, NewsModel>($request);
+  }
 }

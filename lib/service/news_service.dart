@@ -27,6 +27,12 @@ abstract class NewsService extends ChopperService{
   @Get(path: 'top-headlines?country=id&category={category}&apiKey={apiKey}')
   Future<Response<NewsModel>> getNewsByCategory(
       @Path() String category,
-      @Path() String apiKey);
+      @Path() String apiKey
+  );
 
+  @Get(path: 'top-headlines?country=id&q={searchText}&apiKey={apiKey}')
+  Future<Response<NewsModel>> getNewsBySearch(
+      @Path() String searchText,
+      @Path() String apiKey
+  );
 }

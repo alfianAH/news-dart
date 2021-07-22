@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
 import 'package:news_app/service/news_service.dart';
+import 'package:news_app/ui/fab/news_fab.dart';
 import 'package:news_app/ui/menu_item.dart';
 import 'package:news_app/ui/news_list.dart';
 import 'package:news_app/ui/search_result_screen.dart';
@@ -11,6 +12,14 @@ import 'package:news_app/ui/values/menu/news_category_menu.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget{
+  final ValueNotifier<ThemeMode> notifier;
+  final ThemeMode currentTheme;
+
+  HomeScreen({
+    required this.notifier,
+    required this.currentTheme
+  });
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -137,6 +146,11 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           itemCount: newsCategoryMenuList.length,
         ),
+      ),
+
+      floatingActionButton: NewsFloatingActionButton(
+        notifier: widget.notifier,
+        currentTheme: widget.currentTheme,
       ),
 
       body: FutureBuilder<Response<NewsModel>>(

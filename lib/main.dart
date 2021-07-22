@@ -21,71 +21,145 @@ void _setupLogging(){
 }
 
 class MyApp extends StatelessWidget {
+  final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.dark);
+
   @override
   Widget build(BuildContext context) {
     return Provider(
       create: (_) => NewsService.create(),
       dispose: (_, NewsService service) => service.client.dispose(),
-      child: MaterialApp(
-        title: 'Berita Indonesia',
-        theme: ThemeData(
-            primaryColor: NewsColors.primaryColor,
-            scaffoldBackgroundColor: NewsColors.bodyDark,
-            canvasColor: NewsColors.bodyDark,
-            textTheme: TextTheme(
-              headline1: TextStyle(
-                color: NewsColors.fontLight,
-                fontSize: 25,
-                fontWeight: NewsFonts.semiBold,
-              ),
-
-              headline2: TextStyle(
-                color: NewsColors.fontLight,
-                fontSize: 30,
-                fontWeight: NewsFonts.bold,
-              ),
-
-              headline3: TextStyle(
-                color: NewsColors.fontDark,
-                fontSize: 20,
-                fontWeight: NewsFonts.bold,
-              ),
-
-              bodyText1: TextStyle(
-                color: NewsColors.fontLight,
-                fontSize: 20,
-                fontWeight: NewsFonts.regular,
-              ),
-
-              bodyText2: TextStyle(
-                color: NewsColors.fontDark,
-                fontSize: 15,
-                fontWeight: NewsFonts.regular,
-              ),
-
-              subtitle1: TextStyle(
-                color: NewsColors.fontLight,
-                fontSize: 17,
-                fontWeight: NewsFonts.extraLight,
-              ),
-
-              subtitle2: TextStyle(
-                color: NewsColors.fontDark,
-                fontSize: 15,
-                fontWeight: NewsFonts.extraLight,
-              ),
-
-              caption: TextStyle(
-                color: NewsColors.linkDark,
-                fontSize: 20,
-                fontWeight: NewsFonts.light,
-              ),
+      child: ValueListenableBuilder<ThemeMode>(
+        valueListenable: _notifier,
+        builder: (context, mode, child){
+          return MaterialApp(
+            title: 'Berita Indonesia',
+            theme: _NewsTheme.lightTheme,
+            darkTheme: _NewsTheme.darkTheme,
+            themeMode: mode,
+            home: HomeScreen(
+              notifier: _notifier,
+              currentTheme: mode,
             ),
-            fontFamily: 'Kanit'
-        ),
-        home: HomeScreen(),
+          );
+        },
       ),
     );
   }
 }
 
+/// News App Themes
+class _NewsTheme{
+  /// Dark theme data
+  static ThemeData darkTheme = ThemeData(
+    primaryColor: NewsColors.primaryColor,
+    scaffoldBackgroundColor: NewsColors.bodyDark,
+    canvasColor: NewsColors.bodyDark,
+    textTheme: TextTheme(
+      headline1: TextStyle(
+        color: NewsColors.fontLight,
+        fontSize: 25,
+        fontWeight: NewsFonts.semiBold,
+      ),
+
+      headline2: TextStyle(
+        color: NewsColors.fontLight,
+        fontSize: 30,
+        fontWeight: NewsFonts.bold,
+      ),
+
+      headline3: TextStyle(
+        color: NewsColors.fontDark,
+        fontSize: 20,
+        fontWeight: NewsFonts.bold,
+      ),
+
+      bodyText1: TextStyle(
+        color: NewsColors.fontLight,
+        fontSize: 20,
+        fontWeight: NewsFonts.regular,
+      ),
+
+      bodyText2: TextStyle(
+        color: NewsColors.fontDark,
+        fontSize: 15,
+        fontWeight: NewsFonts.regular,
+      ),
+
+      subtitle1: TextStyle(
+        color: NewsColors.fontLight,
+        fontSize: 17,
+        fontWeight: NewsFonts.extraLight,
+      ),
+
+      subtitle2: TextStyle(
+        color: NewsColors.fontDark,
+        fontSize: 15,
+        fontWeight: NewsFonts.extraLight,
+      ),
+
+      caption: TextStyle(
+        color: NewsColors.linkDark,
+        fontSize: 20,
+        fontWeight: NewsFonts.light,
+      ),
+    ),
+    fontFamily: 'Kanit'
+  );
+
+  /// Light theme data
+  static ThemeData lightTheme = ThemeData(
+      primaryColor: NewsColors.primaryColor,
+      scaffoldBackgroundColor: NewsColors.bodyLight,
+      canvasColor: NewsColors.bodyLight,
+      textTheme: TextTheme(
+        headline1: TextStyle(
+          color: NewsColors.fontLight,
+          fontSize: 25,
+          fontWeight: NewsFonts.semiBold,
+        ),
+
+        headline2: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 30,
+          fontWeight: NewsFonts.bold,
+        ),
+
+        headline3: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 20,
+          fontWeight: NewsFonts.bold,
+        ),
+
+        bodyText1: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 20,
+          fontWeight: NewsFonts.regular,
+        ),
+
+        bodyText2: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 15,
+          fontWeight: NewsFonts.regular,
+        ),
+
+        subtitle1: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 17,
+          fontWeight: NewsFonts.extraLight,
+        ),
+
+        subtitle2: TextStyle(
+          color: NewsColors.fontDark,
+          fontSize: 15,
+          fontWeight: NewsFonts.extraLight,
+        ),
+
+        caption: TextStyle(
+          color: NewsColors.linkLight,
+          fontSize: 20,
+          fontWeight: NewsFonts.light,
+        ),
+      ),
+      fontFamily: 'Kanit'
+  );
+}

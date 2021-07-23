@@ -53,59 +53,61 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               // Search bar
-              Expanded(
-                flex: 2,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
+              Flexible(
+                child: Container(
+                  width: 250,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: TextField(
-                            controller: _searchTextController,
-                            style: TextStyle(
-                              color: NewsColors.fontDark,
-                              fontSize: 15
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: TextField(
+                              controller: _searchTextController,
+                              style: TextStyle(
+                                color: NewsColors.fontDark,
+                                fontSize: 15
+                              ),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(0),
+                                border: InputBorder.none,
+                                hintText: 'Cari...',
+                              ),
+                              onChanged: (value){
+                                _searchText = value;
+                              },
+                              onSubmitted: (value){
+                                Navigator.push(context, MaterialPageRoute(builder: (context){
+                                  return SearchResultScreen(searchText: _searchText);
+                                }));
+                              },
                             ),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: const EdgeInsets.all(0),
-                              border: InputBorder.none,
-                              hintText: 'Type your search...',
-                            ),
-                            onChanged: (value){
-                              _searchText = value;
-                            },
-                            onSubmitted: (value){
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return SearchResultScreen(searchText: _searchText);
-                              }));
-                            },
                           ),
-                        ),
 
-                        Expanded(
-                          flex: 1,
-                          child: IconButton(
-                            onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return SearchResultScreen(searchText: _searchText);
-                              }));
-                            },
-                            icon: Icon(
-                              Icons.search_rounded,
-                              color: Color.fromRGBO(144, 144, 144, 1),
-                            )
+                          Expanded(
+                            flex: 1,
+                            child: IconButton(
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context){
+                                  return SearchResultScreen(searchText: _searchText);
+                                }));
+                              },
+                              icon: Icon(
+                                Icons.search_rounded,
+                                color: Color.fromRGBO(144, 144, 144, 1),
+                              )
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

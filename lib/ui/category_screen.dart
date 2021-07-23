@@ -16,7 +16,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return Scaffold(
       appBar: MobileAppBar(
         appBar: AppBar(),
-        appBarTitle: 'Kategori ${MediaQuery.of(context).size.width}',
+        appBarTitle: 'Kategori',
       ),
 
       body: SingleChildScrollView(

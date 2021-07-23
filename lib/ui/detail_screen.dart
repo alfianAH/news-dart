@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
 import 'package:news_app/ui/appbar/mobile_appbar.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
+import 'package:news_app/utils/date_converter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatelessWidget{
@@ -63,7 +64,7 @@ class _DetailMobilePage extends StatelessWidget{
 
           // News date
           Text(
-            '${newsArticle.publishedAt.toString()} by ${newsArticle.author.toString()}',
+            '${DateConverter.convertDate(newsArticle.publishedAt.toString())} oleh ${newsArticle.author.toString()}',
             style: textTheme.subtitle1
           ),
 
@@ -137,8 +138,8 @@ class _DetailWebPage extends StatelessWidget{
 
           // News date
           Text(
-              '${newsArticle.publishedAt.toString()} by ${newsArticle.author.toString()}',
-              style: textTheme.subtitle1
+            '${DateConverter.convertDate(newsArticle.publishedAt.toString())} oleh ${newsArticle.author.toString()}',
+            style: textTheme.subtitle1
           ),
 
           SizedBox(height: 16,),
@@ -160,12 +161,12 @@ class _DetailWebPage extends StatelessWidget{
           // News link
           RichText(
             text: TextSpan(
-                text: 'Klik untuk melihat artikel asli.',
-                style: textTheme.caption,
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    launch(newsArticle.url.toString());
-                  }
+              text: 'Klik untuk melihat artikel asli.',
+              style: textTheme.caption,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  launch(newsArticle.url.toString());
+                }
             ),
           ),
 

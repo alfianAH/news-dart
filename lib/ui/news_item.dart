@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
 import 'package:news_app/ui/detail_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
+import 'package:news_app/utils/date_converter.dart';
 
 class NewsItemVertical extends StatelessWidget {
   final Articles newsArticle;
@@ -75,7 +76,7 @@ class NewsItemVertical extends StatelessWidget {
 
                         // News date
                         Text(
-                          newsArticle.publishedAt.toString(),
+                          DateConverter.convertDate(newsArticle.publishedAt.toString()),
                           style: textTheme.subtitle2,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

@@ -43,7 +43,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 3,
 
                 children: newsCategoryList.map((newsCategory){
                   return InkWell(
@@ -62,10 +61,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(newsCategory.categoryIcon),
+                            Icon(
+                              newsCategory.categoryIcon,
+                              size: 100,
+                            ),
 
                             SizedBox(width: 16,),
 

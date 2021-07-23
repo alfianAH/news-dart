@@ -43,11 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Title
               Expanded(
                 flex: 1,
                 child: Text(
-                    'Berita',
-                    style: textTheme.headline1
+                  'Berita',
+                  style: textTheme.headline1
                 ),
               ),
 
@@ -153,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
+      // FLoating action button
       floatingActionButton: NewsFloatingActionButton(
         notifier: widget.notifier,
         currentTheme: widget.currentTheme,

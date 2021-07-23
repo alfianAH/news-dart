@@ -180,6 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return NewsList(
                 newsModel: newsResponse,
                 listTitle: 'Berita Utama',
+                isFromSearch: false,
               );
             } else{ // Else, return text
               return Padding(

@@ -66,7 +66,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           children: [
                             Icon(
                               newsCategory.categoryIcon,
-                              size: 100,
+                              size: 75,
                             ),
 
                             SizedBox(width: 16,),

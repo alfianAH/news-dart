@@ -47,6 +47,7 @@ class CategoryDetailScreen extends StatelessWidget{
               return NewsList(
                 newsModel: newsResponse,
                 listTitle: 'Berita Utama',
+                isFromSearch: false,
               );
             } else{ // Else, return text
               return Padding(

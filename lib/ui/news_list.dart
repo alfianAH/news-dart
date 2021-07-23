@@ -6,10 +6,12 @@ import 'package:news_app/ui/news_item.dart';
 class NewsList extends StatefulWidget{
   final NewsModel newsModel;
   final String listTitle;
+  final bool isFromSearch;
 
   NewsList({
     required this.newsModel,
-    required this.listTitle
+    required this.listTitle,
+    required this.isFromSearch
   });
 
   @override
@@ -25,26 +27,37 @@ class _NewsListState extends State<NewsList> {
 
     return LayoutBuilder(
       builder: (context, constraints){
-        if(constraints.maxWidth <= 600){
-          return _NewsList600(
+        // Check wheter is from search screen or not
+        // If from search screen, show specified news list
+        if(widget.isFromSearch){
+          return _NewsListSearch(
             scrollController: _scrollController,
             textTheme: textTheme,
             widget: widget,
           );
-        } else if(constraints.maxWidth <= 1000){
-          return _NewsList1000(
-            scrollController: _scrollController,
-            textTheme: textTheme,
-            widget: widget,
-            itemCount: 3
-          );
-        } else{
-          return _NewsList1000(
-            scrollController: _scrollController,
-            textTheme: textTheme,
-            widget: widget,
-            itemCount: 5
-          );
+        } else{ // Else, show original news list
+          // Check max width
+          if(constraints.maxWidth <= 600){
+            return _NewsList600(
+              scrollController: _scrollController,
+              textTheme: textTheme,
+              widget: widget,
+            );
+          } else if(constraints.maxWidth <= 1000){
+            return _NewsList1000(
+              scrollController: _scrollController,
+              textTheme: textTheme,
+              widget: widget,
+              itemCount: 3
+            );
+          } else{
+            return _NewsList1000(
+              scrollController: _scrollController,
+              textTheme: textTheme,
+              widget: widget,
+              itemCount: 5
+            );
+          }
         }
       }
     );
@@ -54,6 +67,64 @@ class _NewsListState extends State<NewsList> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+}
+
+/// News list for search screen
+class _NewsListSearch extends StatelessWidget{
+  final ScrollController scrollController;
+  final TextTheme textTheme;
+  final NewsList widget;
+
+  _NewsListSearch({
+    required this.scrollController,
+    required this.textTheme,
+    required this.widget
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        controller: scrollController,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title
+              Text(
+                widget.listTitle,
+                style: textTheme.headline2,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+
+              // News list
+              Container(
+                width: 600,
+                child: ListView.builder(
+                  controller: scrollController,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index){
+                    // Check image URL is null or not
+                    Articles newsArticle = widget.newsModel.articles![index]!;
+
+                    // If image URL is not null, show it on list
+                    if(newsArticle.urlToImage != null ||
+                        newsArticle.url != null) {
+                      return NewsItemVertical(newsArticle: newsArticle);
+                    } else { // Else, skip it
+                      print('${newsArticle.title} has null url');
+                      return SizedBox.shrink();
+                    }
+                  },
+                  itemCount: widget.newsModel.articles!.length,
+                ),
+              ),
+            ],
+          ),
+        )
+    );
   }
 }
 

@@ -45,6 +45,7 @@ class SearchResultScreen extends StatelessWidget{
               return NewsList(
                 newsModel: newsResponse,
                 listTitle: 'Pencarian anda "$searchText"',
+                isFromSearch: true,
               );
             } else{ // Else, return text
               return Padding(

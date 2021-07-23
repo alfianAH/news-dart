@@ -23,25 +23,35 @@ class _CategoryScreenState extends State<CategoryScreen> {
         controller: _scrollController,
         child: LayoutBuilder(
           builder: (context, constraints){
-            if(constraints.maxWidth <= 600){
-              return _CategoryScreenMobilePage(
+            // Check max width
+            if(constraints.maxWidth > 1000){
+              // Grid view: 6
+              return _CategoryScreenGridView(
                 scrollController: _scrollController,
-                gridCount: 2,
+                gridCount: 6
               );
-            } else if(constraints.maxWidth <= 800) {
-              return _CategoryScreenMobilePage(
-                scrollController: _scrollController,
-                gridCount: 3
-              );
-            } else if(constraints.maxWidth <= 1000) {
-              return _CategoryScreenMobilePage(
+            } else if(constraints.maxWidth > 800){
+              // Grid view: 4
+              return _CategoryScreenGridView(
                 scrollController: _scrollController,
                 gridCount: 4
               );
-            } else {
-              return _CategoryScreenMobilePage(
+            } else if(constraints.maxWidth > 600){
+              // Grid view: 3
+              return _CategoryScreenGridView(
                 scrollController: _scrollController,
-                gridCount: 6
+                gridCount: 3
+              );
+            } else if(constraints.maxWidth > 350){
+              // Grid view: 2
+              return _CategoryScreenGridView(
+                scrollController: _scrollController,
+                gridCount: 2,
+              );
+            } else{
+              // List view
+              return _CategoryScreenListView(
+                scrollController: _scrollController,
               );
             }
           }
@@ -57,11 +67,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 }
 
-class _CategoryScreenMobilePage extends StatelessWidget{
+class _CategoryScreenGridView extends StatelessWidget{
   final ScrollController scrollController;
   final int gridCount;
 
-  _CategoryScreenMobilePage({
+  _CategoryScreenGridView({
     required this.scrollController,
     required this.gridCount
   });
@@ -130,6 +140,69 @@ class _CategoryScreenMobilePage extends StatelessWidget{
                 );
               }).toList(),
             ),
+          ),
+        ]
+      ),
+    );
+  }
+}
+
+class _CategoryScreenListView extends StatelessWidget{
+  final ScrollController scrollController;
+
+  _CategoryScreenListView({
+    required this.scrollController,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Title
+          Text(
+            'Pilih kategori beritamu',
+            style: textTheme.headline2,
+          ),
+
+          SizedBox(height: 16,),
+
+          // Categories
+          ListView.builder(
+            controller: scrollController,
+            shrinkWrap: true,
+            itemCount: newsCategoryList.length,
+            itemBuilder: (context, index){
+              NewsCategory newsCategory = newsCategoryList[index];
+
+              return InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return CategoryDetailScreen(
+                      categoryTitle: newsCategory.categoryName,
+                      categoryId: newsCategory.categoryId,
+                    );
+                  }));
+                },
+
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      newsCategory.categoryName,
+                      style: textTheme.headline3,
+                    )
+                  ),
+                ),
+              );
+            }
           ),
         ]
       ),

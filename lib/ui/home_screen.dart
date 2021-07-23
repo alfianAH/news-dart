@@ -61,26 +61,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 16,
-                      right: 16,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           flex: 2,
-                          child: TextFormField(
+                          child: TextField(
                             controller: _searchTextController,
                             style: TextStyle(
                               color: NewsColors.fontDark,
+                              fontSize: 15
                             ),
                             decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.all(0),
+                              border: InputBorder.none,
                               hintText: 'Type your search...',
                             ),
                             onChanged: (value){
                               _searchText = value;
                             },
-                            onFieldSubmitted: (value){
-                              _searchText = value;
+                            onSubmitted: (value){
                               Navigator.push(context, MaterialPageRoute(builder: (context){
                                 return SearchResultScreen(searchText: _searchText);
                               }));

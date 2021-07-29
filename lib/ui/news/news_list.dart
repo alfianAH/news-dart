@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
-import 'package:news_app/ui/news/news_item_horizontal.dart';
-import 'package:news_app/ui/news/news_item_vertical.dart';
+import 'package:news_app/ui/news/item/news_item_horizontal.dart';
+import 'package:news_app/ui/news/item/news_item_vertical.dart';
 
 class NewsList extends StatefulWidget{
   final NewsModel newsModel;

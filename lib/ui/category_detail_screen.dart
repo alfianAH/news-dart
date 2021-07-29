@@ -43,13 +43,24 @@ class CategoryDetailScreen extends StatelessWidget{
             final newsResponse = snapshot.data!.body;
 
             // If the results greater than 0, return news list
-            if(newsResponse.totalResults! > 0) {
-              return NewsList(
-                newsModel: newsResponse,
-                listTitle: 'Berita Utama',
-                isFromSearch: false,
-              );
-            } else{ // Else, return text
+            if(newsResponse != null){
+              if(newsResponse.totalResults! > 0) {
+                return NewsList(
+                  newsModel: newsResponse,
+                  listTitle: 'Berita Utama',
+                  isFromSearch: false,
+                );
+              } else{ // Else, return text
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Tidak ada hasil',
+                    style: textTheme.bodyText1,
+                  ),
+                );
+              }
+            } else{
+              // Else, return text
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
@@ -58,7 +69,6 @@ class CategoryDetailScreen extends StatelessWidget{
                 ),
               );
             }
-
           } else{
             // Show loading
             return Center(

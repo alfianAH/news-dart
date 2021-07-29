@@ -14,8 +14,7 @@ class NewsFloatingActionButton extends StatefulWidget{
 }
 
 class _NewsFloatingActionButtonState extends State<NewsFloatingActionButton> {
-  bool isLight = false;
-  ThemeMode themeMode = ThemeMode.dark;
+  bool _isLight = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class _NewsFloatingActionButtonState extends State<NewsFloatingActionButton> {
       onPressed: (){
         // Set bool state
         setState(() {
-          isLight = !isLight;
+          _isLight = !_isLight;
           widget.notifier.value = widget.currentTheme == ThemeMode.dark
               ? ThemeMode.light : ThemeMode.dark;
         });
@@ -31,11 +30,11 @@ class _NewsFloatingActionButtonState extends State<NewsFloatingActionButton> {
 
       elevation: 0,
 
-      backgroundColor: isLight
+      backgroundColor: _isLight
           ? Color.fromRGBO(233, 233, 233, 0.75) // Light
           : Color.fromRGBO(0, 0, 0, 0.75), // Dark
 
-      child: isLight
+      child: _isLight
           ? Icon( // Light
             Icons.dark_mode_rounded,
             color: Color.fromRGBO(0, 0, 0, 0.75),

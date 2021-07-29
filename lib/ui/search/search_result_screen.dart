@@ -30,7 +30,8 @@ class SearchResultScreen extends StatelessWidget{
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.done){
             if(snapshot.hasError){
-              return Center(
+              return Padding(
+                padding: const EdgeInsets.all(16),
                 child: Text(
                   snapshot.error.toString(),
                   style: textTheme.bodyText1,

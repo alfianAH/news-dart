@@ -176,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
 
-            final newsResponse = snapshot.data!.body;
+            final newsResponse = snapshot.requireData.body;
 
             // If news response is null, return no result text
             if(newsResponse == null) {

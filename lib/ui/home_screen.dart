@@ -167,7 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.done){
             if(snapshot.hasError){
-              return Center(
+              return Padding(
+                padding: const EdgeInsets.all(16),
                 child: Text(
                   snapshot.error.toString(),
                   style: textTheme.bodyText1,
@@ -190,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Tidak ada hasil',
+                    'Total berita: 0',
                     style: textTheme.bodyText1,
                   ),
                 );

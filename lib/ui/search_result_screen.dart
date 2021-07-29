@@ -53,7 +53,7 @@ class SearchResultScreen extends StatelessWidget{
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Tidak ada hasil',
+                    'Total berita: 0',
                     style: textTheme.bodyText1,
                   ),
                 );

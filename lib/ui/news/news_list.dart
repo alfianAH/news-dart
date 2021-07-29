@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
-import 'package:news_app/ui/news_item.dart';
+import 'package:news_app/ui/news/news_item.dart';
 
 class NewsList extends StatefulWidget{
   final NewsModel newsModel;

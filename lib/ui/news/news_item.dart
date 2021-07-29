@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
-import 'package:news_app/ui/detail_screen.dart';
+import 'package:news_app/ui/detail/detail_screen.dart';
 import 'package:news_app/ui/values/colors/news_colors.dart';
 import 'package:news_app/utils/date_converter.dart';
 

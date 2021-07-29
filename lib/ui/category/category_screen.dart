@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/appbar/mobile_appbar.dart';
-import 'package:news_app/ui/category_detail_screen.dart';
+import 'package:news_app/ui/category/category_detail_screen.dart';
 import 'package:news_app/ui/values/categories/news_category.dart';
 
 class CategoryScreen extends StatefulWidget{

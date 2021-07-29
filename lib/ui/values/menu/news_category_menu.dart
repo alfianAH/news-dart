@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/ui/category_screen.dart';
+import 'package:news_app/ui/category/category_screen.dart';
 
 class NewsCategoryMenu{
   String categoryName;

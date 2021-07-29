@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/model/news_model.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/appbar/mobile_appbar.dart';
-import 'package:news_app/ui/news_list.dart';
+import 'package:news_app/ui/news/news_list.dart';
 import 'package:news_app/ui/values/constants/constants.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NewsFonts{
+class NewsFontWeight{
   static const extraLight = FontWeight.w200;
   static const light      = FontWeight.w300;
   static const regular    = FontWeight.w400;

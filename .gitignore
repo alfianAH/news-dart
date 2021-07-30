@@ -4,6 +4,15 @@
 # Created by https://www.toptal.com/developers/gitignore/api/android,androidstudio,xcode,visualstudiocode,dart,flutter
 # Edit at https://www.toptal.com/developers/gitignore?templates=android,androidstudio,xcode,visualstudiocode,dart,flutter
 
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
 ### Android ###
 # Built application files
 *.apk

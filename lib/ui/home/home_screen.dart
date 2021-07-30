@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
-                  'Tidak ada hasil',
+                  'News Response null',
                   style: textTheme.bodyText1,
                 ),
               );

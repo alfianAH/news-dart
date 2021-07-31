@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:news_app/service/news_service.dart';
 import 'package:news_app/ui/home/home_screen.dart';
-import 'package:news_app/ui/values/constants/constants.dart';
 import 'package:news_app/ui/values/theme/news_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
   _setupLogging();
-  print("api key load");
-  await loadApiKey();
-  print("run app");
   runApp(MyApp());
 }
 

@@ -162,11 +162,14 @@ class _HomeScreenState extends State<HomeScreen> {
         currentTheme: widget.currentTheme,
       ),
 
-      body: FutureBuilder<Response<NewsModel>>(
-        future: Provider.of<NewsService>(context).getNews(apiKey),
+      body: FutureBuilder(
+        // Load API Key from JSON
+        future: loadApiKey(),
         builder: (context, snapshot){
+          // If connection state is done, ...
           if(snapshot.connectionState == ConnectionState.done){
-            if(snapshot.hasError){
+            // Show error if snapshot has error
+            if(snapshot.hasError) {
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(
@@ -176,43 +179,66 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
 
-            final newsResponse = snapshot.requireData.body;
+            // Load news list
+            return FutureBuilder<Response<NewsModel>>(
+              future: Provider.of<NewsService>(context).getNews(apiKey),
+              builder: (context, snapshot){
+                if(snapshot.connectionState == ConnectionState.done){
+                  if(snapshot.hasError){
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        snapshot.error.toString(),
+                        style: textTheme.bodyText1,
+                      ),
+                    );
+                  }
 
-            // If news response is null, return no result text
-            if(newsResponse == null) {
-              return Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  'Tidak ada hasil',
-                  style: textTheme.bodyText1,
-                ),
-              );
-            }
+                  final newsResponse = snapshot.requireData.body;
 
-            // If the results greater than 0, return news list
-            if (newsResponse.totalResults! > 0) {
-              return NewsList(
-                newsModel: newsResponse,
-                listTitle: 'Berita Utama',
-                isFromSearch: false,
-              );
-            } else { // Else, return text
-              return Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  'Total berita: 0',
-                  style: textTheme.bodyText1,
-                ),
-              );
-            }
+                  // If news response is null, return no result text
+                  if(newsResponse == null) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        'Tidak ada hasil',
+                        style: textTheme.bodyText1,
+                      ),
+                    );
+                  }
+
+                  // If the results greater than 0, return news list
+                  if (newsResponse.totalResults! > 0) {
+                    return NewsList(
+                      newsModel: newsResponse,
+                      listTitle: 'Berita Utama',
+                      isFromSearch: false,
+                    );
+                  } else { // Else, return text
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        'Total berita: 0',
+                        style: textTheme.bodyText1,
+                      ),
+                    );
+                  }
+                } else{
+                  // Show loading
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            );
           } else{
             // Show loading
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-        },
-      ),
+        }
+      )
     );
   }
 
